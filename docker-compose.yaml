@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  firefox:
+    build: .
+    #build:
+    #  context: .
+    hostname: firefox
+    #restart: unless-stopped
+    volumes:
+      - $XAUTHORITY:$XAUTHORITY
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw 
+      - /etc/localtime:/etc/localtime:rw
+    privileged: true
+    environment:
+      - DISPLAY=${DISPLAY}
+      - XAUTHORITY
+    devices:
+      - "/dev/snd"
+    image: innovanon/docker-firefox:latest
+
