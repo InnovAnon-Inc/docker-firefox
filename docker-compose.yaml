@@ -17,5 +17,5 @@ services:
     devices:
       - "/dev/snd"
     image: innovanon/docker-firefox:latest
-    container_name: innovanon/docker-firefox
+    container_name: docker-firefox
 
