@@ -37,6 +37,8 @@ RUN apt-fast install firefox
 RUN useradd -ms /bin/bash user
 RUN usermod -a -G audio user
 RUN usermod -a -G video user
+RUN sed -i 's/ca-certificates//g' poobuntu-clean.sh
+RUN ./poobuntu-clean.sh
 USER user
 WORKDIR /home/user
 #ENTRYPOINT ["/usr/bin/firefox-esr", "https://upload.wikimedia.org/wikipedia/commons/8/81/Pronunciation_cs_milan_kundera.ogg"]
