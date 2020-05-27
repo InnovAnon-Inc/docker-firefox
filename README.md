@@ -1,5 +1,5 @@
 # docker-firefox
-=====
+==========
 
 ![Docker](https://github.com/InnovAnon-Inc/docker-firefox/workflows/Docker/badge.svg)
 
