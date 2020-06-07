@@ -33,6 +33,7 @@ ENV DEBIAN_FRONTEND=${DEBIAN_FRONTEND}
 #RUN apt-fast install -y xfce4=4.12.5
 #RUN apt-fast install -y firefox-esr=68.7.0esr-1~deb10u1
 #RUN apt-fast install -y firefox-esr=68.7.0esr\*
+RUN apt-fast update
 RUN apt-fast install firefox
 RUN useradd -ms /bin/bash user
 RUN usermod -a -G audio user
