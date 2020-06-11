@@ -1,9 +1,13 @@
 version: '3.3'
 services:
   firefox:
-    build: .
-    #build:
-    #  context: .
+    #build: .
+    build:
+      context: .
+      args:
+        #OS:  innovanon/poodeb-8
+        OS: debian
+        VER: 8
     hostname: firefox
     #restart: unless-stopped
     volumes:

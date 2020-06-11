@@ -1,6 +1,11 @@
 #FROM debian:10
 #FROM debian:8
-FROM innovanon/poobuntu:latest
+ARG OS
+ARG VER
+FROM $OS:$VER
+ARG OS
+ARG VER
+#FROM innovanon/poobuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 ENV DEBIAN_FRONTEND=${DEBIAN_FRONTEND}
 #RUN apt update
@@ -33,13 +38,20 @@ ENV DEBIAN_FRONTEND=${DEBIAN_FRONTEND}
 #RUN apt-fast install -y xfce4=4.12.5
 #RUN apt-fast install -y firefox-esr=68.7.0esr-1~deb10u1
 #RUN apt-fast install -y firefox-esr=68.7.0esr\*
-RUN apt-fast update
-RUN apt-fast install firefox
+
+#RUN apt-fast update
+RUN apt update
+#RUN apt-fast full-upgrade
+RUN apt full-upgrade -qy
+COPY $OS-$VER.list ./dpkg.list
+#RUN apt-fast install $(cat dpkg.list)
+RUN apt install -qy $(cat dpkg.list)
+RUN rm dpkg.list
 RUN useradd -ms /bin/bash user
 RUN usermod -a -G audio user
 RUN usermod -a -G video user
-RUN sed -i 's/ca-certificates//g' poobuntu-clean.sh
-RUN ./poobuntu-clean.sh
+#RUN sed -i 's/ca-certificates//g' poobuntu-clean.sh
+#RUN ./poobuntu-clean.sh
 USER user
 WORKDIR /home/user
 #ENTRYPOINT ["/usr/bin/firefox-esr", "https://upload.wikimedia.org/wikipedia/commons/8/81/Pronunciation_cs_milan_kundera.ogg"]
